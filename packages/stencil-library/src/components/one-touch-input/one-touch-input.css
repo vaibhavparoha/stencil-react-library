@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+div {
+  display: flex;
+  direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+}
+
+label {
+  font-size: 1.5rem;
+}
+
+input {
+  padding: 10px 20px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  font-size: 1.2rem;
+}
+
+input:focus {
+  border: 2px solid rgba(0, 0, 0, .7);
+}

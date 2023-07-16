@@ -20,6 +20,19 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface OneTouchButton {
+        "label": string;
+        "variant": string;
+    }
+    interface OneTouchInput {
+        "align": string;
+        "label": string;
+        "type": string;
+    }
+}
+export interface OneTouchButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLOneTouchButtonElement;
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +41,22 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLOneTouchButtonElement extends Components.OneTouchButton, HTMLStencilElement {
+    }
+    var HTMLOneTouchButtonElement: {
+        prototype: HTMLOneTouchButtonElement;
+        new (): HTMLOneTouchButtonElement;
+    };
+    interface HTMLOneTouchInputElement extends Components.OneTouchInput, HTMLStencilElement {
+    }
+    var HTMLOneTouchInputElement: {
+        prototype: HTMLOneTouchInputElement;
+        new (): HTMLOneTouchInputElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "one-touch-button": HTMLOneTouchButtonElement;
+        "one-touch-input": HTMLOneTouchInputElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +74,20 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface OneTouchButton {
+        "label"?: string;
+        "onBtnClick"?: (event: OneTouchButtonCustomEvent<any>) => void;
+        "variant"?: string;
+    }
+    interface OneTouchInput {
+        "align"?: string;
+        "label"?: string;
+        "type"?: string;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "one-touch-button": OneTouchButton;
+        "one-touch-input": OneTouchInput;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +95,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "one-touch-button": LocalJSX.OneTouchButton & JSXBase.HTMLAttributes<HTMLOneTouchButtonElement>;
+            "one-touch-input": LocalJSX.OneTouchInput & JSXBase.HTMLAttributes<HTMLOneTouchInputElement>;
         }
     }
 }
